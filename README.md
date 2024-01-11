@@ -10,7 +10,7 @@ python intractable_disease.py
 
 ## license
 
-Code: MIT License
-Data: [CC-BY-4.0](https://creativecommons.org/licenses/by/4.0/legalcode)
+- Code: MIT License
+- Data: [CC-BY-4.0](https://creativecommons.org/licenses/by/4.0/legalcode)
 
 Csv, json and yaml on this repository were created by processing the "指定難病病名一覧表" in https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/0000084783.html (Ministry of Health, Labour and Welfare).
