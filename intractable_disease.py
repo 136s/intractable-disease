@@ -5,18 +5,20 @@ import pandas as pd
 
 
 def intractable_disease_table(
-    xlsx_url: str = "https://www.mhlw.go.jp/content/000855403.xlsx",
+    xlsx_url: str = "https://www.mhlw.go.jp/content/001212238.xlsx",
     num_period_cols: int = 2,
-    period_colname: list[str] = ["_", "no", "name"],
+    period_colname: list[str] = ["no", "name"],
+    skiprows: int = 3,
 ) -> pd.Series:
     """Get intractable disease table from xlsx_url.
 
     Args:
         xlsx_url (str, optional): a url of xlsx file.
-            Defaults to "https://www.mhlw.go.jp/content/000855403.xlsx".
+            Defaults to "https://www.mhlw.go.jp/content/001212238.xlsx".
         num_period_cols (int, optional): number of periods of columns. Defaults to 2.
         period_colname (list[str], optional): column names of a period.
-            Defaults to ["_", "no", "name"].
+            Defaults to ["no", "name"].
+        skiprows (int, optional): number of rows to skip from the beginning.
 
     Returns:
         pd.Series: a series of intractable disease table.
@@ -27,7 +29,9 @@ def intractable_disease_table(
     # load xlsx
     colnames = [f"{col}_{i}" for i in range(num_period_cols) for col in period_colname]
     multicol_df = (
-        pd.read_excel(xlsx_url, names=colnames).filter(regex="^(?!_)").dropna()
+        pd.read_excel(xlsx_url, names=colnames, skiprows=skiprows)
+        .filter(regex="^(?!_)")
+        .dropna(how="all")
     )
     # split to no and name
     no, name = (
@@ -38,7 +42,12 @@ def intractable_disease_table(
         .T
     )
     # make series
-    series = pd.Series(name, index=no, name="name").drop("番号")
+    series = (
+        pd.Series(name, index=no, name="name")
+        .str.replace("\n", "")
+        .drop("番号")
+        .dropna()
+    )
     series.index.rename("no", inplace=True)
     return series.sort_index()
 
