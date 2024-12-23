@@ -47,7 +47,7 @@ if __name__ == "__main__":
     import yaml
     import pandas as pd
 
-    pd.Series(disease_urls, name="name").rename_axis("no").to_csv("intractable_disease_url.csv", encoding="utf-8-sig")
+    pd.Series(disease_urls, name="url").rename_axis("no").to_csv("intractable_disease_url.csv", encoding="utf-8-sig")
 
     with open("intractable_disease_url.json", "w", encoding="utf-8") as f:
         json.dump(disease_urls, f, ensure_ascii=False)
