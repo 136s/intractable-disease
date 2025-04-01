@@ -5,7 +5,7 @@ import pandas as pd
 
 
 def intractable_disease_table(
-    xlsx_url: str = "https://www.mhlw.go.jp/content/001212238.xlsx",
+    xlsx_url: str = "https://www.mhlw.go.jp/content/001438428.xlsx",
     num_period_cols: int = 2,
     period_colname: list[str] = ["no", "name"],
     skiprows: int = 3,
@@ -14,7 +14,7 @@ def intractable_disease_table(
 
     Args:
         xlsx_url (str, optional): a url of xlsx file.
-            Defaults to "https://www.mhlw.go.jp/content/001212238.xlsx".
+            Defaults to "https://www.mhlw.go.jp/content/001438428.xlsx".
         num_period_cols (int, optional): number of periods of columns. Defaults to 2.
         period_colname (list[str], optional): column names of a period.
             Defaults to ["no", "name"].
