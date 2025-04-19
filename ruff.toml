@@ -1,0 +1,17 @@
+include = ["*/*.py"]
+
+line-length = 120
+
+fix = true
+
+[lint]
+extend-select = ["D"]
+
+[lint.isort]
+split-on-trailing-comma = false
+
+[lint.pydocstyle]
+convention = "google"
+
+[format]
+skip-magic-trailing-comma = true
